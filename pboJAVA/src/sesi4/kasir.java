@@ -3,28 +3,41 @@ package sesi4;
 import java.util.Scanner;
 
 public class kasir {
+
     public static void main(String[] args) {
-        //Membuat Variabel dan Scanner
-        String lampu;
+        // deklarasi variabel dan Scanner
+        int belanjaan, diskon, bayar;
+        String kartu;
         Scanner scan = new Scanner(System.in);
 
-        //Mengambil Input
-        System.out.print("Inputkan Nama Warna: ");
-        lampu = scan.nextLine();
+        // mengambil input
+        System.out.print("Apakah ada kartu member: ");
+        kartu = scan.nextLine();
+        System.out.print("Total belanjaan: ");
+        belanjaan = scan.nextInt();
 
-        switch (lampu) {
-            case "merah":
-                System.out.println("Lampu merah, berhenti!");
-                break;
-            case "kuning":
-                System.out.println("Lampu kuning, harap hati-hati!");
-                break;
-            case "hijau":
-                System.out.println("Lampu hijau, Silakan Jalan!");
-                break;
-            default:
-                System.out.println("Warna Lampu Salah");
-                break;
+        // proses
+        if (kartu.equalsIgnoreCase("ya")) {
+            if (belanjaan > 500000) {
+                diskon = 50000;
+            } else if (belanjaan > 100000) {
+                diskon = 15000;
+            } else {
+                diskon = 0;
+            }
+        } else {
+            if (belanjaan > 100000) {
+                diskon = 5000;
+            } else {
+                diskon = 0;
+            }
         }
+
+        // total yang harus dibayar
+        bayar = belanjaan - diskon;
+
+        // output
+        System.out.println("Total Bayar: Rp " + bayar);
     }
+    
 }
