@@ -15,5 +15,6 @@ public class hadiah {
             System.out.println("Selamat, Anda mendapatkan hadiah!");
         }
         System.out.println("Terima Kasih...");
+        scan.close();
     }
 }

@@ -29,5 +29,6 @@ import java.util.Scanner;
         }
         //cetak hasilnya
         System.out.println("Grade: " + grade);
+        scan.close();
     }
 }

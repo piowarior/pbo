@@ -27,5 +27,7 @@ public class lampulalulintas {
                 System.out.println("Warna Lampu Salah");
                 break;
         }
+
+        scan.close();
     }
 }

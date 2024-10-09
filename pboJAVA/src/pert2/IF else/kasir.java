@@ -38,6 +38,8 @@ public class kasir {
 
         // output
         System.out.println("Total Bayar: Rp " + bayar);
+
+        scan.close();
     }
     
 }

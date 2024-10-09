@@ -17,5 +17,7 @@ public class cekkelulusan {
         } else {
             System.out.println("Maaf " + nama + ", Anda Gagal");
         }
+        scan.close();
     }
+    
 }
