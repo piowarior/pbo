@@ -1,4 +1,4 @@
-package sesi4.looping;
+package pert2.looping;
 
 public class bilanganprima {
     public static void main(String[] args) {
@@ -22,5 +22,7 @@ public class bilanganprima {
                 System.out.print(i + " ");
             }
         }
+        
     }
+    
 }

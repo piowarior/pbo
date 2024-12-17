@@ -33,6 +33,10 @@ public void tampilkanInfoMobil() {
 }
 
 
+
+ 
+}
+
 public class MobilCek {
     public static void main(String[] args) {
 
@@ -51,6 +55,4 @@ public class MobilCek {
 
         mobil1.tampilkanInfoMobil();
     }
-}
- 
 }

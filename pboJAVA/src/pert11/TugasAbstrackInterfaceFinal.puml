@@ -1,0 +1,40 @@
+@startuml
+
+' Kelas Abstrak Kendaraan
+abstract class Kendaraan {
+    - String nama
+    + Kendaraan(String nama)
+    + abstract double hitungHargaSewa(int hari)
+    + String getNama()
+}
+
+' Interface Asuransi
+interface Asuransi {
+    + double hitungBiayaAsuransi(int hari)
+}
+
+' Kelas Mobil meng-extend Kendaraan dan mengimplementasikan Asuransi
+class Mobil {
+    - String jenisBahanBakar
+    + Mobil(String nama, String jenisBahanBakar)
+    + double hitungHargaSewa(int hari)
+    + double hitungBiayaAsuransi(int hari)
+    + String toString()
+}
+
+' Kelas Motor meng-extend Kendaraan dan mengimplementasikan Asuransi
+class Motor {
+    - int kapasitasMesin
+    + Motor(String nama, int kapasitasMesin)
+    + double hitungHargaSewa(int hari)
+    + double hitungBiayaAsuransi(int hari)
+    + String toString()
+}
+
+' Relasi antar kelas
+Kendaraan <|-- Mobil
+Kendaraan <|-- Motor
+Asuransi <|.. Mobil
+Asuransi <|.. Motor
+
+@enduml
