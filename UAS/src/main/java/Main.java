@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.sql.Connection;
@@ -20,9 +21,6 @@ import java.sql.SQLException;
 import main.java.Product.DeleteProductPage;
 import main.java.Product.EditProductPage;
 import main.java.Product.addProductPage;
-
-import main.java.Order.AddPesananPage;
-
 
 public class Main extends Application {
 
@@ -97,12 +95,77 @@ public class Main extends Application {
         // Tab for Home
         Tab homeTab = new Tab("Home");
         homeTab.setClosable(false);
+
         VBox homeContent = new VBox(20);
         homeContent.setAlignment(Pos.CENTER);
-        Label homeLabel = new Label("Welcome to the Dashboard!");
-        homeLabel.setFont(Font.font("Arial", 18));
-        homeContent.getChildren().add(homeLabel);
+        homeContent.setPadding(new Insets(20));
+
+        // Logo placeholder
+        Label logo = new Label("\u26A1"); // Unicode character as a logo placeholder
+        logo.setFont(Font.font("Verdana", 60));
+        logo.setStyle("-fx-text-fill: #2ecc71;"); // Green color
+
+        // Company name
+        Label companyName = new Label("MJD Stock Management System");
+        companyName.setFont(Font.font("Verdana", 28));
+        companyName.setStyle("-fx-font-weight: bold; -fx-text-fill: #34495e;");
+
+        // Description text
+        Label description = new Label("MJD Stock Management System adalah solusi terbaik untuk pengelolaan produk dan gudang Anda.\nKami membantu Anda meningkatkan efisiensi dan transparansi dalam manajemen inventaris.");
+        description.setFont(Font.font("Arial", 16));
+        description.setStyle("-fx-text-fill: #7f8c8d;");
+        description.setWrapText(true);
+        description.setTextAlignment(TextAlignment.CENTER);
+
+        // Features section
+        VBox featuresBox = new VBox(10);
+        featuresBox.setAlignment(Pos.CENTER);
+        featuresBox.setPadding(new Insets(10));
+        Label featuresTitle = new Label("Fitur Unggulan:");
+        featuresTitle.setFont(Font.font("Arial", 18));
+        featuresTitle.setStyle("-fx-font-weight: bold; -fx-text-fill: #34495e;");
+
+        Label feature1 = new Label("✔ Pengelolaan produk yang mudah dan efisien.");
+        feature1.setFont(Font.font("Arial", 14));
+        feature1.setStyle("-fx-text-fill: #2ecc71;");
+
+        Label feature2 = new Label("✔ Pemantauan stok secara real-time.");
+        feature2.setFont(Font.font("Arial", 14));
+        feature2.setStyle("-fx-text-fill: #2ecc71;");
+
+        Label feature3 = new Label("✔ Analitik data gudang yang mendalam.");
+        feature3.setFont(Font.font("Arial", 14));
+        feature3.setStyle("-fx-text-fill: #2ecc71;");
+
+        featuresBox.getChildren().addAll(featuresTitle, feature1, feature2, feature3);
+
+        // Testimonials section
+        VBox testimonialsBox = new VBox(10);
+        testimonialsBox.setAlignment(Pos.CENTER);
+        testimonialsBox.setPadding(new Insets(10));
+        Label testimonialsTitle = new Label("Apa Kata Pengguna Kami:");
+        testimonialsTitle.setFont(Font.font("Arial", 18));
+        testimonialsTitle.setStyle("-fx-font-weight: bold; -fx-text-fill: #34495e;");
+
+        Label testimonial1 = new Label("\"Sistem ini sangat membantu bisnis saya dalam mengelola stok produk.\" - John Doe");
+        testimonial1.setFont(Font.font("Arial", 14));
+        testimonial1.setStyle("-fx-text-fill: #7f8c8d;");
+
+        Label testimonial2 = new Label("\"Analitik yang disediakan sangat berguna untuk pengambilan keputusan.\" - Jane Smith");
+        testimonial2.setFont(Font.font("Arial", 14));
+        testimonial2.setStyle("-fx-text-fill: #7f8c8d;");
+
+        testimonialsBox.getChildren().addAll(testimonialsTitle, testimonial1, testimonial2);
+
+        // Contact info
+        Label contactInfo = new Label("Hubungi kami: support@mjdstock.com | +62 123 456 789");
+        contactInfo.setFont(Font.font("Arial", 14));
+        contactInfo.setStyle("-fx-text-fill: #95a5a6;");
+        contactInfo.setTextAlignment(TextAlignment.CENTER);
+
+        homeContent.getChildren().addAll(logo, companyName, description, featuresBox, testimonialsBox, contactInfo);
         homeTab.setContent(homeContent);
+
 
         // Tab for Produk
         Tab produkTab = new Tab("Produk");
@@ -180,94 +243,47 @@ public class Main extends Application {
         produkContent.getChildren().addAll(produkMenu, produkTable);
         produkTab.setContent(produkContent);
 
-        // Tab for Pesanan/Pengiriman
-        Tab pesananTab = new Tab("Pesanan/Pengiriman");
-        pesananTab.setClosable(false);
-        
-        // Button Menu for Pesanan/Pengiriman
-        HBox pesananMenu = new HBox(10);
-        pesananMenu.setAlignment(Pos.CENTER_LEFT);
-        pesananMenu.setPadding(new Insets(10));
-        
-        Button btnViewPesanan = new Button("Melihat Pesanan");
-        Button btnAddPesanan = new Button("Menambahkan Pesanan");
-        btnAddPesanan.setOnAction(e -> {
-            // Open AddPesananPage when the button is clicked
-            AddPesananPage addPesananPage = new AddPesananPage(stage);
-            addPesananPage.show();
-        });
-        
-        Button btnEditPesanan = new Button("Mengedit Pesanan");
-        // btnEditPesanan.setOnAction(e -> {
-        //     EditPesananPage editPesananPage = new EditPesananPage(stage);
-        //     editPesananPage.show();
-        // });
-        
-        Button btnDeletePesanan = new Button("Menghapus Pesanan");
-        // btnDeletePesanan.setOnAction(e -> {
-        //     // Open DeletePesananPage when the button is clicked
-        //     DeletePesananPage deletePesananPage = new DeletePesananPage(stage);
-        //     deletePesananPage.show();
-        // });
-        
-        // Styling for buttons
-        btnViewPesanan.setStyle("-fx-background-color: #2ecc71; -fx-text-fill: white;");
-        btnAddPesanan.setStyle("-fx-background-color: #3498db; -fx-text-fill: white;");
-        btnEditPesanan.setStyle("-fx-background-color: #f39c12; -fx-text-fill: white;");
-        btnDeletePesanan.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white;"); // Red color for delete
-        
-        pesananMenu.getChildren().addAll(btnViewPesanan, btnAddPesanan, btnEditPesanan, btnDeletePesanan);
-        
-        // Table to display Pesanan data
-        TableView<Pesanan> pesananTable = new TableView<>();
-        pesananTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        
-        // Columns for TableView
-        TableColumn<Pesanan, String> namaProdukColumn = new TableColumn<>("Nama Produk");
-        namaProdukColumn.setCellValueFactory(cellData -> cellData.getValue().namaProdukProperty());
-        
-        TableColumn<Pesanan, String> namaPelangganColumn = new TableColumn<>("Nama Pelanggan");
-        namaPelangganColumn.setCellValueFactory(cellData -> cellData.getValue().namaPelangganProperty());
-        
-        TableColumn<Pesanan, String> alamatPengirimColumn = new TableColumn<>("Alamat Pengirim");
-        alamatPengirimColumn.setCellValueFactory(cellData -> cellData.getValue().alamatPengirimProperty());
-        
-        TableColumn<Pesanan, String> seriProdukColumn = new TableColumn<>("Seri Produk");
-        seriProdukColumn.setCellValueFactory(cellData -> cellData.getValue().seriProdukProperty());
-        
-        TableColumn<Pesanan, String> tanggalPesananColumn = new TableColumn<>("Tanggal Pesanan");
-        tanggalPesananColumn.setCellValueFactory(cellData -> cellData.getValue().tanggalPesananProperty());
-        
-        TableColumn<Pesanan, String> statusPesananColumn = new TableColumn<>("Status Pesanan");
-        statusPesananColumn.setCellValueFactory(cellData -> cellData.getValue().statusPesananProperty());
-        
-        TableColumn<Pesanan, Double> totalHargaColumn = new TableColumn<>("Total Harga");
-        totalHargaColumn.setCellValueFactory(cellData -> cellData.getValue().totalHargaProperty().asObject());
-        
-        TableColumn<Pesanan, String> noTeleponColumn = new TableColumn<>("Nomor Telepon");
-        noTeleponColumn.setCellValueFactory(cellData -> cellData.getValue().noTeleponProperty());
-        
-        pesananTable.getColumns().addAll(namaProdukColumn, namaPelangganColumn, alamatPengirimColumn, seriProdukColumn,
-                                         tanggalPesananColumn, statusPesananColumn, totalHargaColumn, noTeleponColumn);
-        
-        // Add pesananMenu and TableView to the Tab content
-        VBox pesananContent = new VBox(20);
-        pesananContent.setAlignment(Pos.CENTER);
-        pesananContent.getChildren().addAll(pesananMenu, pesananTable);
-        pesananTab.setContent(pesananContent);
-        
-        // Load data into the table
-        pesananTable.setItems(getPesananPengirimanFromDatabase());
-
+       
         // Tab for Gudang
+        // Tab Gudang dengan TableView untuk menampilkan data gudang
         Tab gudangTab = new Tab("Gudang");
         gudangTab.setClosable(false);
+
+        // Membuat TableView untuk menampilkan data Gudang
+        TableView<Gudang> gudangTable = new TableView<>();
+        gudangTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        // Definisi Kolom
+        TableColumn<Gudang, Integer> idColumn = new TableColumn<>("ID Gudang");
+        idColumn.setCellValueFactory(cellData -> cellData.getValue().idGudangProperty().asObject());
+
+        TableColumn<Gudang, String> namaColumn2 = new TableColumn<>("Nama Gudang");
+        namaColumn2.setCellValueFactory(cellData -> cellData.getValue().namaGudangProperty());
+
+        TableColumn<Gudang, String> lokasiColumn = new TableColumn<>("Lokasi Gudang");
+        lokasiColumn.setCellValueFactory(cellData -> cellData.getValue().lokasiGudangProperty());
+
+        TableColumn<Gudang, Integer> kapasitasColumn = new TableColumn<>("Kapasitas");
+        kapasitasColumn.setCellValueFactory(cellData -> cellData.getValue().kapasitasProperty().asObject());
+
+        TableColumn<Gudang, String> tanggalColumn = new TableColumn<>("Tanggal Ditambahkan");
+        tanggalColumn.setCellValueFactory(cellData -> cellData.getValue().tanggalDitambahkanProperty());
+
+        // Menambahkan kolom ke dalam tabel
+        gudangTable.getColumns().addAll(idColumn, namaColumn2, lokasiColumn, kapasitasColumn, tanggalColumn);
+
+
+        // Membungkus TableView ke dalam VBox
         VBox gudangContent = new VBox(20);
         gudangContent.setAlignment(Pos.CENTER);
-        Label gudangLabel = new Label("Manajemen Gudang Perusahaan");
-        gudangLabel.setFont(Font.font("Arial", 18));
-        gudangContent.getChildren().add(gudangLabel);
+        gudangContent.getChildren().addAll(gudangTable);
         gudangTab.setContent(gudangContent);
+
+
+        // Menambahkan data dari database ke TableView
+        gudangTable.setItems(getGudangFromDatabase());
+
+        gudangTab.setContent(new VBox(gudangTable));
 
         // Tab for Analitik
         Tab analitikTab = new Tab("Analitik");
@@ -279,7 +295,7 @@ public class Main extends Application {
         analitikContent.getChildren().add(analitikLabel);
         analitikTab.setContent(analitikContent);
 
-        tabPane.getTabs().addAll(homeTab, produkTab, pesananTab, gudangTab, analitikTab);
+        tabPane.getTabs().addAll(homeTab, produkTab,  gudangTab, analitikTab);
 
         // Footer
         Label footerLabel = new Label("Hak Cipta 2025 - MJD Stock Management System");
@@ -331,36 +347,33 @@ public class Main extends Application {
         return produkList;
     }
 
-    private ObservableList<Pesanan> getPesananPengirimanFromDatabase() {
-    ObservableList<Pesanan> pesananList = FXCollections.observableArrayList();
-    String sql = "SELECT nama_produk, nama_pelanggan, alamat_pengirim, seri_produk, "
-               + "tanggal_pesanan, status_pesanan, total_harga, no_telepon "
-               + "FROM pesanan_pengiriman";
     
+
+private ObservableList<Gudang> getGudangFromDatabase() {
+    ObservableList<Gudang> gudangList = FXCollections.observableArrayList();
+    String sql = "SELECT * FROM gudang";
+
     try (Connection connection = DatabaseConnection.getConnection();
          PreparedStatement statement = connection.prepareStatement(sql);
          ResultSet resultSet = statement.executeQuery()) {
-    
+
         while (resultSet.next()) {
-            String namaProduk = resultSet.getString("nama_produk");
-            String namaPelanggan = resultSet.getString("nama_pelanggan");
-            String alamatPengirim = resultSet.getString("alamat_pengirim");
-            String seriProduk = resultSet.getString("seri_produk");
-            String tanggalPesanan = resultSet.getString("tanggal_pesanan");
-            String statusPesanan = resultSet.getString("status_pesanan");
-            double totalHarga = resultSet.getDouble("total_harga");
-            String noTelepon = resultSet.getString("no_telepon");
-    
-            pesananList.add(new Pesanan(namaProduk, namaPelanggan, alamatPengirim, seriProduk, tanggalPesanan, statusPesanan, totalHarga, noTelepon));
+            int idGudang = resultSet.getInt("id_gudang");
+            String namaGudang = resultSet.getString("nama_gudang");
+            String lokasiGudang = resultSet.getString("lokasi_gudang");
+            int kapasitas = resultSet.getInt("kapasitas");
+            String tanggalDitambahkan = resultSet.getString("tanggal_ditambahkan");
+
+            gudangList.add(new Gudang(idGudang, namaGudang, lokasiGudang, kapasitas, tanggalDitambahkan));
         }
-    
+
     } catch (SQLException e) {
-        System.out.println("Gagal mengambil data pesanan: " + e.getMessage());
+        System.out.println("Gagal mengambil data gudang: " + e.getMessage());
     }
-    
-    return pesananList;
+
+    return gudangList;
 }
-    
+
     
 
 
